@@ -9,27 +9,41 @@
 <body>
     <div class="widget">
         <div class="btn_cont">
-            <a href="" class="btn">Добавить тикет</a>
+            <a href="" class="btn add">Добавить тикет</a>
         </div>
         <table class="table">
             <tbody class="tasks_list">
                 <tr class="task">
                     <td class="elem status">
-                        <p class="round"></p>
+                        <p class="round"><img class="done hidden" src="./img/done.svg"></p>
                     </td>
                     <td class="elem text">dfsfgfg</td>
                     <td class="elem date">1</td>
                     <td class="elem change">
-                        <p class="round"></p>
+                        <p class="round"><img class="edit" src="./img/edit.svg"></p>
                     </td>
                     <td class="elem change">
-                        <p class="round"></p>
+                        <p class="round"><img class="close" src="./img/close.svg"></p>
                     </td>
                 </tr>
             </tbody>
 
         </table>
+        <div class="popup hidden">
+            <div class="content">
+                <h3 class="popover_header">Добавить тикет</h3>
+                <form class="form">
+                    <p class="name-new-ticket">Краткое описание</p>
+                    <input class="input-name-new-ticket">
+                    <p class="description-new-ticket">Подробное описание</p>
+                    <textarea class="input-description-new-ticket"></textarea>
+                    <p class="btn_block">
+                        <a href="" class="btn cancel">Отмена</a>
+                        <a href="" class="btn ok">ОК</a>
+                    </p>
+                </form>
+            </div>
+        </div>
     </div>
-    
 </body>
 </html>

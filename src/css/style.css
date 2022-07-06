@@ -7,8 +7,8 @@
     background: linear-gradient( #bbb, transparent 1px), linear-gradient( 90deg, #bbb, transparent 1px);
     background-size: 15px 15px;
     background-position: center center;
-    padding: 20px;
-    max-width: 600px;
+    padding: 20px 0 20px 0;
+    max-width: 800px;    
 
 }
 
@@ -21,6 +21,7 @@
 .btn {
     text-decoration: none;
     padding: 10px;
+    margin: 5px;
     border-radius: 15px;
     border: 1px solid #000;
     background-color: white;
@@ -49,6 +50,9 @@
     border: 1.5px solid #000;
     border-radius: 100%;
     margin: 5px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -72,3 +76,57 @@
 }
 
 
+.done {
+    width: 75%;
+    height: 75%;
+}
+
+.edit {
+    width: 75%;
+    height: 75%;
+}
+
+.close {
+    width: 75%;
+    height: 75%;
+}
+
+.popup{    
+    width:100%;
+    min-height:100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow:hidden;
+    position:fixed;
+    top:0px;
+}
+
+.content{
+    margin:40px auto 0px auto;
+    max-width: 350px;
+    padding:10px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.popover_header{
+    text-align: center;
+}
+
+.input-name-new-ticket {
+    width: 95%;
+}
+
+.input-description-new-ticket {
+    width: 95%;
+}
+
+.btn_block {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 0px;
+}
+
+.hidden {
+    visibility: hidden;
+}
