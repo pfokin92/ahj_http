@@ -9,21 +9,21 @@
 <body>
     <div class="widget">
         <div class="btn_cont">
-            <a href="" class="btn add">Добавить тикет</a>
+            <a class="btn add">Добавить тикет</a>
         </div>
         <table class="table">
             <tbody class="tasks_list">
-                <tr class="task">
-                    <td class="elem status">
-                        <p class="round"><img class="done hidden" src="./img/done.svg"></p>
+                <tr class="task" data-id="1">
+                    <td class="elem status" data-id="status">
+                        <p class="round"><svg class="done hidden" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/><path d="M36 14l-2.83-2.83-12.68 12.69 2.83 2.83L36 14zm8.49-2.83L23.31 32.34 14.97 24l-2.83 2.83L23.31 38l24-24-2.82-2.83zM.83 26.83L12 38l2.83-2.83L3.66 24 .83 26.83z"/></svg></p>
                     </td>
-                    <td class="elem text">dfsfgfg</td>
-                    <td class="elem date">1</td>
+                    <td class="elem text" data-id="name">dfsfgfg</td>
+                    <td class="elem date" data-id="date">1</td>
                     <td class="elem change">
-                        <p class="round"><img class="edit" src="./img/edit.svg"></p>
+                        <p class="round"><svg class="edit" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M6 34.5v7.5h7.5l22.13-22.13-7.5-7.5-22.13 22.13zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></p>
                     </td>
                     <td class="elem change">
-                        <p class="round"><img class="close" src="./img/close.svg"></p>
+                        <p class="round"><svg class="close" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></p>
                     </td>
                 </tr>
             </tbody>
@@ -38,8 +38,8 @@
                     <p class="description-new-ticket">Подробное описание</p>
                     <textarea class="input-description-new-ticket"></textarea>
                     <p class="btn_block">
-                        <a href="" class="btn cancel">Отмена</a>
-                        <a href="" class="btn ok">ОК</a>
+                        <a class="btn cancel">Отмена</a>
+                        <a class="btn okeyBtn">ОК</a>
                     </p>
                 </form>
             </div>

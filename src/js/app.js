@@ -1,4 +1,4 @@
-﻿import Gui from './Gui';
+import Gui from './Gui';
 import Logic from './Logic';
 
 const gui = new Gui();
