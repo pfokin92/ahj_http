@@ -1,9 +1,10 @@
-
 export default class Logic {
   constructor(gui) {
     this.gui = gui;
     this.tickets = null;
     this.url = 'https://ahj-http-server-pfokin.herokuapp.com';
+    this.popUpReset = this.popUpReset.bind(this);
+    this.popUpSubmit = this.popUpSubmit.bind(this);
   }
 
   init() {
@@ -11,36 +12,23 @@ export default class Logic {
 
     this.gui.widget.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log(e.target.dataset);
-      if(e.target.dataset.id === 'edit') {
-        this.editTicket(e);
-      } else if (e.target.dataset.id === 'remove') {
-        this.removeTicket(e);
-      } else if (e.target.dataset.id === 'title'){
-        this.showDescription(e);
-      } else if (e.target.dataset.id === 'addTicket') {
-        this.addTicket(e);
+      let currId;
+      if (e.target.tagName === 'path' && e.target.closest('.img')) {
+        currId = e.target.closest('.img').dataset.id;
+      } else {
+        currId = e.target.dataset.id;
       }
 
-
+      if (currId === 'edit') {
+        this.editTicket(e);
+      } else if (currId === 'remove') {
+        this.removeTicket(e);
+      } else if (currId === 'name') {
+        this.showDescription(e);
+      } else if (currId === 'addTicket') {
+        this.addTicket(e);
+      }
     });
-
-    // this.gui.btnAdd.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   if (this.gui.popUp.classList.contains('hidden')) {
-    //     this.gui.popUp.classList.remove('hidden');
-    //   }
-    // });
-    // this.gui.btnCancel.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   this.gui.popUp.classList.add('hidden');
-    // });
-    // this.gui.btnOk.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   this.gui.popUp.classList.add('hidden');
-    //   const taskN = this.gui.createTask(1, true, 'ghjlydju jfdsoo', new Date().toString().slice(4, 21));
-    //   this.gui.tasksList.innerHTML += taskN;
-    // });
   }
 
   async sendXHR(method, query, type) {
@@ -62,14 +50,29 @@ export default class Logic {
   }
 
   async getTickets() {
+    console.log(this.tickets);
     const result = JSON.parse(await this.sendXHR('GET', 'allTickets'));
     this.tickets = result;
+    console.log(this.tickets);
     this.fillFields((this.tickets));
+  }
+
+  async popUpSubmit(e) {
+    console.log(this.gui.popUp);
+    this.gui.popUp.classList.add('hidden');
   }
 
   // eslint-disable-next-line class-methods-use-this
   editTicket(e) {
-    console.log('edit', e);
+    e.preventDefault();
+    this.gui.popUp.innerHTML = '';
+    const task = e.target.closest('.task');
+    this.gui.popUp.classList.remove('hidden');
+    this.gui.popUp.innerHTML += this.gui.addPopUp('Редактировать тикет', e.target, e.target);
+    const submit = this.gui.popUp.querySelector('.okeyBtn');
+    const cancel = this.gui.popUp.querySelector('.cancel');
+    submit.addEventListener('click', this.popUpSubmit);
+    cancel.addEventListener('click', this.popUpReset);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -82,9 +85,22 @@ export default class Logic {
     console.log('showDescription', e);
   }
 
+
   // eslint-disable-next-line class-methods-use-this
   addTicket(e) {
-    console.log('addTicket', e);
+    e.preventDefault();
+    this.gui.popUp.innerHTML = '';
+    this.gui.popUp.classList.remove('hidden');
+    this.gui.popUp.innerHTML += this.gui.addPopUp('Добавить тикет', '', '');
+    const submit = this.gui.popUp.querySelector('.okeyBtn');
+    const cancel = this.gui.popUp.querySelector('.cancel');
+    submit.addEventListener('click', this.popUpSubmit);
+    cancel.addEventListener('click', this.popUpReset);
+  }
+
+  popUpReset(e) {
+    e.preventDefault();
+    this.gui.popUp.classList.add('hidden');
   }
 
   fillFields(tArr) {

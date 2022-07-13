@@ -3,7 +3,6 @@ export default class Gui {
   constructor() {
     this.widget = document.querySelector('.widget');
     this.tasksList = document.querySelector('.tasks_list');
-    this.btnAdd = document.querySelector('.add');
     this.popUp = document.querySelector('.popup');
     this.btnCancel = document.querySelector('.cancel');
     this.btnOk = document.querySelector('.okeyBtn');
@@ -22,12 +21,30 @@ export default class Gui {
         <td class="text" data-id="name">${name}</td>
         <td class="date" data-id="date">${date}</td>
         <td class="change">
-            <p class="round edit-btn"><svg class="edit" data-id="edit" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M6 34.5v7.5h7.5l22.13-22.13-7.5-7.5-22.13 22.13zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></p>
+            <p class="round edit-btn"><svg class="img edit" data-id="edit" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M6 34.5v7.5h7.5l22.13-22.13-7.5-7.5-22.13 22.13zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></p>
         </td>
         <td class="change">
-            <p class="round remove-btn"><svg class="close" data-id="remove" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></p>
+            <p class="round remove-btn"><svg class="img close" data-id="remove" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg></p>
         </td>
     </tr>`;
     return newTask;
+  }
+
+  addPopUp(header, name, description) {
+    const newPopUp = `
+      <div class="content">
+          <h3 class="popover_header">${header}</h3>
+          <form class="form" action="submit">
+              <p class="name-new-ticket">Краткое описание</p>
+              <input class="input-name-new-ticket" data-id="name-edit" value="${name}">
+              <p class="description-new-ticket">Подробное описание</p>
+              <textarea class="input-description-new-ticket" data-id="description-edit">${description}</textarea>
+              <p class="btn_block">
+                  <a class="btn cancel">Отмена</a>
+                  <a class="btn okeyBtn">ОК</a>
+              </p>
+          </form>
+      </div>`;
+    return newPopUp;
   }
 }
