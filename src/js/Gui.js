@@ -47,4 +47,20 @@ export default class Gui {
       </div>`;
     return newPopUp;
   }
+
+  showDescription(header, name, description){
+    const newPopUp = `
+    <div class="content">
+        <h3 class="popover_header">${header}</h3>
+          <p class="name-new-ticket">Краткое описание</p>
+          <p class="show-description" data-id="name-edit">${name}</p>
+          <p class="description-new-ticket">Подробное описание</p>
+          <p class="show-description" data-id="description-edit">${description}</p>
+          <p class="btn_block">
+              <a class="btn cancel">Закрыть</a>
+          </p>
+    </div>
+    `;
+    return newPopUp;
+  }
 }

@@ -2,7 +2,8 @@ export default class Logic {
   constructor(gui) {
     this.gui = gui;
     this.tickets = null;
-    this.url = 'https://ahj-http-server-pfokin.herokuapp.com';
+    this.url = 'http://localhost:7070/';
+    // this.url = 'https://ahj-http-server-pfokin.herokuapp.com';
     this.popUpReset = this.popUpReset.bind(this);
     this.popUpSubmit = this.popUpSubmit.bind(this);
   }
@@ -50,25 +51,28 @@ export default class Logic {
   }
 
   async getTickets() {
-    console.log(this.tickets);
     const result = JSON.parse(await this.sendXHR('GET', 'allTickets'));
     this.tickets = result;
-    console.log(this.tickets);
     this.fillFields((this.tickets));
   }
 
   async popUpSubmit(e) {
-    console.log(this.gui.popUp);
+    this.gui.popUp.classList.add('hidden');
+  }
+
+  popUpReset(e) {
+    e.preventDefault();
     this.gui.popUp.classList.add('hidden');
   }
 
   // eslint-disable-next-line class-methods-use-this
-  editTicket(e) {
+  async editTicket(e) {
     e.preventDefault();
     this.gui.popUp.innerHTML = '';
     const task = e.target.closest('.task');
+    const ticket = JSON.parse(await this.sendXHR('GET', `ticketById&id=${task.dataset.id}`));
     this.gui.popUp.classList.remove('hidden');
-    this.gui.popUp.innerHTML += this.gui.addPopUp('Редактировать тикет', e.target, e.target);
+    this.gui.popUp.innerHTML += this.gui.addPopUp('Редактировать тикет', ticket.name, ticket.description);
     const submit = this.gui.popUp.querySelector('.okeyBtn');
     const cancel = this.gui.popUp.querySelector('.cancel');
     submit.addEventListener('click', this.popUpSubmit);
@@ -81,10 +85,20 @@ export default class Logic {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  showDescription(e) {
+  async showDescription(e) {
     console.log('showDescription', e);
-  }
+    e.preventDefault();
+    this.gui.popUp.innerHTML = '';
+    const task = e.target.closest('.task');
+    const ticket = JSON.parse(await this.sendXHR('GET', `ticketById&id=${task.dataset.id}`));
+    this.gui.popUp.classList.remove('hidden');
+    this.gui.popUp.innerHTML += this.gui.showDescription('Тикет', ticket.name, ticket.description);
+    const cancel = this.gui.popUp.querySelector('.cancel');
+    cancel.addEventListener('click', this.popUpReset);
 
+
+    console.log(e.target);
+  }
 
   // eslint-disable-next-line class-methods-use-this
   addTicket(e) {
@@ -98,10 +112,6 @@ export default class Logic {
     cancel.addEventListener('click', this.popUpReset);
   }
 
-  popUpReset(e) {
-    e.preventDefault();
-    this.gui.popUp.classList.add('hidden');
-  }
 
   fillFields(tArr) {
     this.gui.tasksList.innerHTML = '';
