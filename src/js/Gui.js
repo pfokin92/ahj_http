@@ -30,15 +30,15 @@ export default class Gui {
     return newTask;
   }
 
-  addPopUp(header, name, description) {
+  addPopUp(header, title, description, idform, name, id) {
     const newPopUp = `
       <div class="content">
           <h3 class="popover_header">${header}</h3>
-          <form class="form" action="submit">
+          <form class="form" name="${name}" data-id="${id}" data-idform="${idform}" enctype="multipart/form-data">
               <p class="name-new-ticket">Краткое описание</p>
-              <input class="input-name-new-ticket" data-id="name-edit" value="${name}">
+              <input class="input-name-new-ticket" name="title" data-id="name-edit" value="${title}">
               <p class="description-new-ticket">Подробное описание</p>
-              <textarea class="input-description-new-ticket" data-id="description-edit">${description}</textarea>
+              <textarea class="input-description-new-ticket" name="description" data-id="description-edit">${description}</textarea>
               <p class="btn_block">
                   <a class="btn cancel">Отмена</a>
                   <a class="btn okeyBtn">ОК</a>
@@ -48,7 +48,7 @@ export default class Gui {
     return newPopUp;
   }
 
-  showDescription(header, name, description){
+  showDescription(header, name, description) {
     const newPopUp = `
     <div class="content">
         <h3 class="popover_header">${header}</h3>
@@ -59,6 +59,21 @@ export default class Gui {
           <p class="btn_block">
               <a class="btn cancel">Закрыть</a>
           </p>
+    </div>
+    `;
+    return newPopUp;
+  }
+
+  showVertification(name, idform) {
+    const newPopUp = `
+    <div class="content">
+        <h3 class="popover_header">Вы хотите удалить тикет <span class="show-name">${name}</span>?</h3>
+        <form class="form" action="submit" data-idform="${idform}">
+          <p class="btn_block">
+              <a class="btn cancel">Нет</a>
+              <a class="btn okeyBtn">Да</a>
+          </p>
+        </form>
     </div>
     `;
     return newPopUp;
